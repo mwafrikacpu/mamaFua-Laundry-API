@@ -5,14 +5,14 @@ dotenv.config();
 const auth = (req, res, next) => {
   try {
     const bearerToken = req.headers.authorization;
-    // const token = bearerToken.split('Bearer')[1];
-    if (!bearerToken) {
+    const token = bearerToken ? bearerToken.split('Bearer ')[1] : null;
+    if (!token) {
       return res.status(401).json({
         status: 'failed',
         message: 'Required authorization',
       });
     }
-    jwt.verify(bearerToken, process.env.SECRET_KEY, (err, user) => {
+    jwt.verify(token, process.env.SECRET_KEY, (err, user) => {
       if (err)
         return res.sendStatus(403).json({
           status: 'failed',

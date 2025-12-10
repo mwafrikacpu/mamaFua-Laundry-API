@@ -5,13 +5,8 @@ const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT } = process.env;
 const mysql2 = require('mysql2');
 const db = {
   development: {
-    username: DB_USER,
-    password: DB_PASSWORD,
-    database: DB_NAME,
-    host: DB_HOST,
-    port: DB_PORT,
-    dialect: 'mysql',
-    // dialectModule: mysql2,
+    storage: './database.sqlite',
+    dialect: 'sqlite'
   },
   test: {
     username: DB_USER,
