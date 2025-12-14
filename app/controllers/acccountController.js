@@ -65,11 +65,11 @@ const register = async (req, res) => {
 
     // buat user baru
     const user = await accounts.create({
-      nik: nik,
+      nik: nik || null,
       password: hashedPassword,
       name: name,
       address: address,
-      role: 'admin',
+      role: 'user',
       noTelp: no_telp,
       email: email,
     });
@@ -85,6 +85,7 @@ const register = async (req, res) => {
     res.status(200).json({
       message: 'Registrasi berhasil',
       token: token,
+      data: user,
     });
   } catch (error) {
     res.status(error.statusCode || 500).json({
