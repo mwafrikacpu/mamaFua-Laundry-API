@@ -60,7 +60,7 @@ const getAllTransactions = async (req, res) => {
 };
 
 const StatusPembayaran = Object.freeze({
-  LUNAS: 'lunas',
+  Paid: 'Paid',
   BELUM_BAYAR: 'belum-bayar',
   BAYAR_SEBAGIAN: 'bayar-sebagian',
 });
@@ -149,7 +149,7 @@ const takeTransactionById = async (req, res) => {
     await transactions.update(
       {
         dateOut: Sequelize.fn('NOW'),
-        status: StatusPembayaran.LUNAS,
+        status: StatusPembayaran.Paid,
         amountPayment: updated.price,
       },
       { where: { id } }
@@ -177,7 +177,7 @@ const payTransactionById = async (req, res) => {
   const { cashier } = req.body;
   try {
     await transactions.update(
-      { datePayment: Sequelize.fn('NOW'), status: StatusPembayaran.LUNAS },
+      { datePayment: Sequelize.fn('NOW'), status: StatusPembayaran.Paid },
       { where: { id } }
     );
     const updated = await transactions.findOne({ where: { id } }).then(

@@ -1,6 +1,6 @@
 'use strict';
 const { faker } = require('@faker-js/faker');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {

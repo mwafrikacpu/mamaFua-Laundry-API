@@ -11,7 +11,9 @@ process.env.TZ = 'Asia/Makassar';
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const corsOptions = {
-  origin: '*',
+  origin:['http://localhost:3000',
+    'https://mamafua.vercel.app'
+  ],
   credentials: true, //access-control-allow-credentials:true
   optionSuccessStatus: 200,
 };
@@ -27,7 +29,7 @@ const port = config.appPort;
 const server = http.createServer(app);
 
 server.listen(port, '0.0.0.0', () => {
-  console.log(`Server listening on port ${port}, http://localhost:3001`);
+  console.log(`Server listening on port ${port}`);
 });
 
 module.exports = app;

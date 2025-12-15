@@ -59,7 +59,7 @@ module.exports = {
         price: '50000',
       },
     ];
-    const statusList = ['lunas', 'belum-bayar', 'bayar-sebagian'];
+    const statusList = ['Paid', 'belum-bayar', 'bayar-sebagian'];
     for (let i = 0; i < 500; i++) {
       const idService = faker.number.int({ min: 0, max: services.length - 1 });
       const weight = faker.number.int({ min: 1, max: 20 });
@@ -70,7 +70,7 @@ module.exports = {
       const amountPayment =
         status == 'belum-bayar'
           ? 0
-          : status == 'lunas'
+          : status == 'Paid'
           ? price
           : amountPaymentList[faker.number.int({ min: 1, max: 2 })];
       const dateDone = faker.date.between({
